@@ -15,18 +15,18 @@ function imageOnLoad() {
 
     context.drawImage(img, 0, 0);
     var imageData = context.getImageData(0,0, img.width, img.height);
-    var red = 150,
-        green = 255,
-        blue = 40;
-    for(var i = 0; i < imageData.data.length; i +=4){
-        if(imageData.data[i] == 0 && imageData.data[i + 1] == 0 && imageData.data[i + 2] == 0) {
-            imageData.data[i] = red;
-            imageData.data[i + 1] = green;
-            imageData.data[i + 2] = blue;
-        }
-
-    }
-    context.putImageData(imageData, img.width + 10, 0);
+    // var red = 150,
+    //     green = 255,
+    //     blue = 40;
+    // for(var i = 0; i < imageData.data.length; i +=4){
+    //     if(imageData.data[i] == 0 && imageData.data[i + 1] == 0 && imageData.data[i + 2] == 0) {
+    //         imageData.data[i] = red;
+    //         imageData.data[i + 1] = green;
+    //         imageData.data[i + 2] = blue;
+    //     }
+    //
+    // }
+    // context.putImageData(imageData, img.width + 10, 0);
 }
 
 
@@ -55,24 +55,35 @@ function setMousePosition(e) {
 
 
 function update() {
+    var circleRadius = 10;
+
     context.clearRect(0, 0, canvas.width, canvas.height);
     imageOnLoad();
     context.beginPath();
-    context.arc(mouseX, mouseY, 10, 0, 2 * Math.PI, true);
+    context.arc(mouseX, mouseY, circleRadius, 0, 2 * Math.PI, true);
     context.fillStyle = myColor;
     context.fill();
     requestAnimationFrame(update);
 
     // var counterY = mouseY,
-    //     counrerX = mouseX-21;
-    // for(var i = 0; i < 20; i++){
-    //     counrerX--;
+    //     counterX = mouseX - circleRadius-1;
+
+    //console.log(counterY);
+
+    // context.beginPath();
+    // context.fillStyle = 'green';
+    // context.fillRect(counterX, counterY, 3, 3);
+
+    // for(var i = 0; i < 90; i++){
+    //     counterX++;
+    //     counterY--;
     //     context.beginPath();
     //     context.fillStyle = 'green';
-    //     context.fillRect(counrerX,counterY,3,3);
+    //     context.fillRect(counterX, counterY,3,3);
     // }
 
 }
+
 update();
 
 function getPosition(el) {
